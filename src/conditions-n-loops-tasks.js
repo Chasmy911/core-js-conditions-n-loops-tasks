@@ -66,8 +66,13 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  return (
+    (queen.x === queen.y && king.x === king.y) ||
+    queen.x === king.x ||
+    queen.y === king.y ||
+    (queen.x - 3 === king.x && queen.y + 3 === king.y)
+  );
 }
 
 /**
@@ -131,8 +136,51 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let newStr = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '1':
+        newStr += 'one';
+        break;
+      case '0':
+        newStr += 'zero';
+        break;
+      case '-':
+        newStr += 'minus';
+        break;
+      case '2':
+        newStr += 'two';
+        break;
+      case '3':
+        newStr += 'three';
+        break;
+      case '4':
+        newStr += 'four';
+        break;
+      case '5':
+        newStr += 'five';
+        break;
+      case '6':
+        newStr += 'six';
+        break;
+      case '7':
+        newStr += 'seven';
+        break;
+      case '8':
+        newStr += 'eight';
+        break;
+      case '9':
+        newStr += 'nine';
+        break;
+      default:
+        newStr += 'point';
+        break;
+    }
+
+    if (i !== numberStr.length - 1) newStr += ' ';
+  }
+  return newStr;
 }
 
 /**
@@ -147,8 +195,13 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let newStr = '';
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    newStr += str[i];
+  }
+  if (str === newStr) return true;
+  return false;
 }
 
 /**
@@ -190,8 +243,12 @@ function getIndexOf(str, letter) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  while (num > 0) {
+    const current = num % 10;
+    if (current === digit) return true;
+  }
+  return false;
 }
 
 /**
