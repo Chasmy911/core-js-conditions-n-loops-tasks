@@ -244,11 +244,17 @@ function getIndexOf(str, letter) {
  *  12345, 6    => false
  */
 function isContainNumber(num, digit) {
-  while (num > 0) {
-    const current = num % 10;
-    if (current === digit) return true;
+  let res;
+  const newNum = num.toFixed();
+  for (let i = 0; i < newNum.length; i += 1) {
+    if (newNum[i] === digit.toFixed()) {
+      res = true;
+      break;
+    } else {
+      res = false;
+    }
   }
-  return false;
+  return res;
 }
 
 /**
@@ -326,8 +332,23 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  const sortArr = arr;
+  const max = Math.max(...sortArr);
+  const resArr = [];
+  for (let i = 0; i < sortArr.length; i += 1) {
+    const min = Math.min(...sortArr);
+    resArr[i] = min;
+    let ind = -1;
+    do {
+      ind += 1;
+    } while (sortArr[ind] !== min);
+    sortArr[ind] = max;
+  }
+  for (let j = 0; j < sortArr.length; j += 1) {
+    sortArr[j] = resArr[j];
+  }
+  return sortArr;
 }
 
 /**
